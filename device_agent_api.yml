@@ -84,8 +84,8 @@ channels:
               type: string
               description: auto|high|median|low
             unix_timestamp:
-              type: integer
-              description: unix_timestamp=1635841256
+              type: number
+              description: unix_timestamp=1635841256.14457
   rl_correct/subiot/[device_id]/command:
     publish:
       message:
