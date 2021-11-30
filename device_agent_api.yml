@@ -14,11 +14,9 @@ channels:
           properties:
             requesterID:
               type: string
-              pattern: identity
               description: requesterID=self.core.identity
             message_type:
               type: string
-              pattern: command
               description: message_type="command"
         payload:
           type: object
@@ -41,3 +39,74 @@ channels:
             fan:
               type: string
               description: auto|high|median|low
+  hvac/bac0hvac/[device_id]/event:
+    subscribe:
+      message:
+        description: message from hvac agents.
+        headers:
+          type: object
+          additionalProperties: false
+          properties:
+            requesterID:
+              type: string
+              description: requesterID=identity
+            message_type:
+              type: string
+              description: message_type="event"
+            TimeStamp:
+              type: string
+              description: TimeStamp="2021-11-02T15:22:56.642556+00:00"
+        payload:
+          type: object
+          additionalProperties: false
+          description: One of the following parameter is required mode|temperature|fan. No need to to specify all of them.
+          properties:
+            device_id:
+              type: string
+              description: device_id="ex_ac_1"
+            subdevice_idx:
+              type: integer
+              description: subdevice_idx=0
+            type:
+              type: string
+              description: type="ac"
+            source:
+              type: string
+              description: source="ac_remote|web|c2d|rl_action"
+            mode:
+              type: string
+              description: off|cool|fan|dry
+            temperature:
+              type: integer
+              minimum: 18
+              maximum: 29
+            fan:
+              type: string
+              description: auto|high|median|low
+            unix_timestamp:
+              type: integer
+              description: unix_timestamp=1635841256
+  rl_correct/subiot/[device_id]/command:
+    publish:
+      message:
+        description: message for command RLCorrection agent.
+        headers:
+          type: object
+          additionalProperties: false
+          properties:
+            requesterID:
+              type: string
+              description: requesterID=self.core.identity
+            message_type:
+              type: string
+              description: message_type="command"
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            subdevice_idx:
+              type: integer
+              description: subdevice_idx=0
+            feedback:
+              type: string
+              description: Too Hot|Too Cold
