@@ -25,6 +25,12 @@ channels:
           additionalProperties: false
           description: One of the following parameter is required mode|temperature|fan. No need to to specify all of them.
           properties:
+            subdevice_idx:
+              type: integer
+              description: subdevice_idx=0
+            source:
+              type: string
+              description: source="ac_remote|web|c2d|rl_action"
             mode:
               type: string
               description: off|cool|fan|dry
