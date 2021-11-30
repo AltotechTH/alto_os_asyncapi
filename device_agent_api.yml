@@ -1,0 +1,37 @@
+asyncapi: '2.2.0'
+info:
+  title: Device Agent
+  version: 1.0.0
+  description: The API for device agents.
+channels:
+  hvac/bac0hvac/[device_id]/command:
+    publish:
+      message:
+        description: message for control hvac.
+        headers:
+          type: object
+          additionalProperties: false
+          properties:
+            requesterID:
+              type: string
+              pattern: identity
+              description: requesterID=self.core.identity
+            message_type:
+              type: string
+              pattern: command
+              description: message_type="command"
+        payload:
+          type: object
+          additionalProperties: false
+          description: One of the following parameter is required mode|temperature|fan. No need to to specify all of them.
+          properties:
+            mode:
+              type: string
+              description: off|cool|fan|dry
+            temperature:
+              type: integer
+              minimum: 18
+              maximum: 29
+            fan:
+              type: string
+              description: auto|high|median|low
