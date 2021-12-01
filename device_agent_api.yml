@@ -104,9 +104,12 @@ channels:
           type: object
           additionalProperties: false
           properties:
-            subdevice_idx:
-              type: integer
-              description: subdevice_idx=0
+            building:
+              type: string
+              description: building="BGrimm"
+            zone:
+              type: string
+              description: zone="Floor 1 Digital Meeting Room"
             feedback:
               type: string
-              description: Too Hot|Too Cold
+              description: feedback="Too Hot|Too Cold"
